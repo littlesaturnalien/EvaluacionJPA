@@ -10,15 +10,12 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 @Getter @Setter
-@Entity
-@Table(name = "clients")
+@Entity @Table(name = "clients")
 public class Client {
 
-    @NotNull(message = "Id cannot be null.")
-    @Id
+    @Id @NotNull(message = "Id cannot be null.")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
@@ -33,10 +30,11 @@ public class Client {
     @NotNull(message = "Email cannot be null.")
     private String email;
 
-
     @NotNull(message = "Phone cannot be null.")
     @Column(name = "phonenumber", nullable = false, unique = true)
     private String phone;
 
+    @NotNull(message = "Date cannot be null.")
+    @Column(nullable = false)
     private LocalDateTime registerDate;
 }
