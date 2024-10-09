@@ -3,15 +3,14 @@ package org.cesar.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
+@ToString
 @Entity @Table(name = "clients")
 public class Client {
 
@@ -36,5 +35,12 @@ public class Client {
 
     @NotNull(message = "Date cannot be null.")
     @Column(nullable = false)
-    private LocalDateTime registerDate;
+    private String registerDate;
+
+    public Client(String fullName, String email, String phone, String registerDate) {
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.registerDate = registerDate;
+    }
 }

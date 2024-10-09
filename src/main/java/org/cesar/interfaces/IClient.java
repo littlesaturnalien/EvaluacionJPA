@@ -11,5 +11,5 @@ public interface IClient {
     public List<Client> getAllClients();    // Read
     public void updateClient(Client client); // Update
     public void deleteClient(Long id);       // Delete
-
+    public Client getClientById(Long id);
 }

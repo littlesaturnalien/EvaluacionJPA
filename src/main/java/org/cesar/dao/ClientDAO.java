@@ -90,4 +90,24 @@ public class ClientDAO implements IClient {
         }
     }
 
+    @Override
+    public Client getClientById(Long id) {
+        EntityManager entityManager = null;
+        Client client = null;
+        try{
+            entityManager = EntityManagerAdmin.getInstance();
+            TypedQuery<Client> query = entityManager.createQuery("SELECT c FROM Client c WHERE c.id = :id ", Client.class);
+            query.setParameter("id", id);
+            client = query.getSingleResult();
+        } catch (Exception e){
+            logger.severe("Error searching faculty with Id " + id + "\nError: " + e.getMessage());
+        } finally {
+            if(entityManager != null){
+                entityManager.close();
+            }
+        }
+        return client;
+    }
+
+
 }
